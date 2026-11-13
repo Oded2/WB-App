@@ -120,7 +120,7 @@ export default function AircraftComponent({ aircraft }: Props) {
               cg={cg}
               weight={totalWeight}
             />
-            <span className="ms-auto text-xs text-slate-500">{`MOTW: ${aircraft.chart.envelope[aircraft.chart.envelope.length - 2].weight.toLocaleString()}lbs`}</span>
+            <span className="ms-auto text-xs text-slate-500">{`MTOW: ${aircraft.chart.envelope[aircraft.chart.envelope.length - 2].weight.toLocaleString()}lbs`}</span>
           </div>
         ) : (
           <span>Maximum takeoff weight is way too high</span>
