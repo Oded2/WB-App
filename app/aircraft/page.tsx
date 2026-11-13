@@ -1,10 +1,6 @@
+// import AircraftLoader from "@/components/AirctaftLoader";
 import Aircraft from "@/components/AircraftComponent";
-import { Suspense } from "react";
 
 export default function Page() {
-  return (
-    <Suspense>
-      <Aircraft></Aircraft>
-    </Suspense>
-  );
+  return <Aircraft aircraftType="Cessna 172" registration="4X-CAU" />;
 }

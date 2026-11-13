@@ -16,7 +16,11 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={poppins.variable}>
-      <body>{children}</body>
+      <body>
+        <div className="flex min-h-screen flex-col bg-slate-100 py-5 text-slate-950 sm:px-5 sm:py-10">
+          {children}
+        </div>
+      </body>
     </html>
   );
 }

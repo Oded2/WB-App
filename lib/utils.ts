@@ -8,3 +8,5 @@ export const addParams = (
   );
   return url.pathname + url.search;
 };
+export const isValidNumber = (s: string): boolean =>
+  s.trim() !== "" && Number.isFinite(Number(s));
