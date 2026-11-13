@@ -55,7 +55,7 @@ export function WeightBalanceGraph({ chart, cg, weight }: Props) {
   const inside = isWithinEnvelope(cg, weight, chart);
 
   return (
-    <div className="mb-auto w-160 max-w-lg rounded-lg bg-slate-200 px-4 pt-4 pb-8 shadow-lg">
+    <div className="rounded-lg bg-slate-200 px-4 pb-8 shadow">
       <h3 className="mb-2 text-sm font-medium text-slate-200">{chart.name}</h3>
       <svg viewBox={`0 0 ${W} ${H}`} className="h-auto w-full">
         {/* Grid + X ticks */}
