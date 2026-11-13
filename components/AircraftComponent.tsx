@@ -39,7 +39,6 @@ export default function AircraftComponent({ aircraft }: Props) {
         <h1 className="text-8xl font-bold">
           {aircraft.registration.toUpperCase()}
         </h1>
-        <span>{aircraft.emptyWeight}</span>
       </div>
       <div className="mt-4 flex items-stretch justify-center gap-20">
         <div className="flex flex-col gap-2 rounded-lg bg-slate-200 p-5">
@@ -80,6 +79,12 @@ export default function AircraftComponent({ aircraft }: Props) {
         </div>
         <div className="flex flex-col-reverse gap-5">
           <div className="flex min-h-5 w-lg justify-between gap-4 overflow-auto rounded-2xl bg-slate-200 p-5 text-nowrap">
+            <div className="flex flex-col rounded bg-slate-300 px-5 py-3 transition-shadow hover:shadow">
+              <span className="text-sm text-slate-800">Empty Weight</span>
+              <span className="text-xs text-slate-600">{`Weight: ${aircraft.emptyWeight.toLocaleString()}lbs`}</span>
+              <span className="text-xs text-slate-600">{`Arm: ${aircraft.emptyArm.toLocaleString()}in`}</span>
+              <span className="text-xs text-slate-600">{`Moment: ${(aircraft.emptyWeight * aircraft.emptyArm).toLocaleString()}`}</span>
+            </div>
             {armsSorted.map(([armName], index) => (
               <div
                 key={index}

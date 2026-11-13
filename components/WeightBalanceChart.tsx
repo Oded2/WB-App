@@ -138,8 +138,8 @@ export function WeightBalanceGraph({ chart, cg, weight }: Props) {
       <p
         className={`mt-2 text-sm ${inside ? "text-emerald-400" : "text-red-400"}`}
       >
-        {weight} lbs @ {cg.toFixed(1)} in:{" "}
-        {inside ? "within limits" : "out of limits"}
+        {weight.toLocaleString("en-US", { maximumFractionDigits: 0 })}lbs @{" "}
+        {cg.toFixed(1)}in: {inside ? "within limits" : "out of limits"}
       </p>
     </div>
   );
