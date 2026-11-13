@@ -7,3 +7,11 @@ export type WeightBalanceChart = {
   name: string;
   envelope: EnvelopePoint[]; // vertices in order around the shape (closed implicitly)
 };
+
+export type BaseValues = {
+  emptyWeight: number;
+  emptyArm: number;
+  maxFuel: number;
+};
+
+export type Arms = Record<string, number>;
