@@ -1,6 +1,6 @@
 "use client";
 
-import { Arms, BaseValues, WeightBalanceChart } from "@/lib/types";
+import { Aircraft } from "@/lib/types";
 import { WeightBalanceGraph } from "./WeightBalanceChart";
 import Link from "next/link";
 import Button from "./Button";
@@ -8,21 +8,13 @@ import { useState } from "react";
 import { isValidNumber } from "@/lib/utils";
 
 type Props = {
-  baseValues: BaseValues;
-  aircraftType: string;
-  registration: string;
-  arms: Arms;
-  chart: WeightBalanceChart;
+  aircraft: Aircraft;
 };
 
-export default function Aircraft({
-  baseValues,
-  arms,
-  chart,
-  aircraftType,
-  registration,
-}: Props) {
-  const armsSorted = Object.entries(arms).sort(([_a1, a], [_b2, b]) => a - b);
+export default function AircraftComponent({ aircraft }: Props) {
+  const armsSorted = Object.entries(aircraft.arms).sort(
+    ([_a1, a], [_b2, b]) => a - b,
+  );
   const [weights, setWeights] = useState<number[]>(
     Array(armsSorted.length).fill(0),
   );
@@ -32,9 +24,9 @@ export default function Aircraft({
   };
 
   const totalWeight =
-    baseValues.emptyWeight + weights.reduce((sum, w) => sum + w, 0);
+    aircraft.emptyWeight + weights.reduce((sum, w) => sum + w, 0);
   const totalMoment =
-    baseValues.emptyWeight * baseValues.emptyArm +
+    aircraft.emptyWeight * aircraft.emptyArm +
     weights.reduce((sum, w, i) => sum + w * armsSorted[i][1], 0);
   const cg = totalWeight > 0 ? totalMoment / totalWeight : 0;
   return (
@@ -43,8 +35,11 @@ export default function Aircraft({
         <Button>Home</Button>
       </Link>
       <div className="mx-auto flex flex-col">
-        <h4 className="text-xl italic">{aircraftType}</h4>
-        <h1 className="text-8xl font-bold">{registration}</h1>
+        <h4 className="text-xl italic">{aircraft.type}</h4>
+        <h1 className="text-8xl font-bold">
+          {aircraft.registration.toUpperCase()}
+        </h1>
+        <span>{aircraft.emptyWeight}</span>
       </div>
       <div className="mt-4 flex items-stretch justify-center gap-20">
         <div className="flex flex-col gap-2 rounded-lg bg-slate-200 p-5">
@@ -75,9 +70,9 @@ export default function Aircraft({
                 className="rounded-lg bg-slate-300 p-2 ring-blue-300 transition-all outline-none focus:ring-2"
               />
               {itemName.toLowerCase().includes("fuel") &&
-                weights[index] > baseValues.maxFuel && (
+                weights[index] > aircraft.maxFuel && (
                   <span className="text-xs text-red-400">
-                    {`Fuel exceeds maximum amount (${(baseValues.maxFuel / 6).toLocaleString()} gallons)`}
+                    {`Fuel exceeds maximum amount (${(aircraft.maxFuel / 6).toLocaleString()} gallons)`}
                   </span>
                 )}
             </div>
@@ -101,8 +96,13 @@ export default function Aircraft({
             {/* Ensures that the weight and balance graph doesn't render if the weight exceeds the maximum weight by over a reasonable amount
             Done to prevent crashes since the weight and balance graph is heavy */}
             {totalWeight <
-            chart.envelope[chart.envelope.length - 2].weight * 5 ? (
-              <WeightBalanceGraph chart={chart} cg={cg} weight={totalWeight} />
+            aircraft.chart.envelope[aircraft.chart.envelope.length - 2].weight *
+              5 ? (
+              <WeightBalanceGraph
+                chart={aircraft.chart}
+                cg={cg}
+                weight={totalWeight}
+              />
             ) : (
               <span>Maximum takeoff weight is way too high</span>
             )}
