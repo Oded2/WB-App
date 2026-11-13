@@ -9,7 +9,7 @@ export async function getAircraft(registration: string): Promise<Aircraft> {
   const { data, error } = await supabase
     .from("aircrafts")
     .select(
-      "id, registration, type, emptyWeight:empty_weight, emptyArm:empty_arm, maxFuel:max_fuel, arms, chart",
+      "id, registration, type, emptyWeight:empty_weight, emptyArm:empty_arm, maxFuel:max_fuel, arms, chart, verified, imageUrl:image_url",
     )
     .eq("registration", registration)
     .maybeSingle();

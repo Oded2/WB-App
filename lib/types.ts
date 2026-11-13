@@ -19,4 +19,6 @@ export type Aircraft = {
   maxFuel: number;
   arms: Arms;
   chart: WeightBalanceChart;
+  imageUrl: string | null;
+  verified: boolean;
 };

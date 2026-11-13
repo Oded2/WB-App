@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import { notFound } from "next/navigation";
-import Aircraft from "@/components/AircraftComponent";
 import { getAircraft } from "@/lib/aircraft";
+import AircraftComponent from "@/components/AircraftComponent";
 
 type SearchParams = Promise<{ registration?: string | string[] }>;
 
@@ -22,7 +22,6 @@ async function AircraftLoader({
   const reg = Array.isArray(registration) ? registration[0] : registration;
   if (!reg) notFound();
   const aircraft = await getAircraft(reg.toLowerCase());
-  console.log(aircraft);
   if (!aircraft) notFound();
-  return <Aircraft aircraft={aircraft} />;
+  return <AircraftComponent aircraft={aircraft} />;
 }
