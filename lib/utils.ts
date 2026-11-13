@@ -10,3 +10,6 @@ export const addParams = (
 };
 export const isValidNumber = (s: string): boolean =>
   s.trim() !== "" && Number.isFinite(Number(s));
+
+export const REGISTRATION_REGEX =
+  /^(?:N[1-9][0-9A-HJ-NP-Z]{0,4}|[0-9A-Z]{1,2}-[0-9A-Z]{2,5})$/i;
