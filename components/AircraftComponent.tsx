@@ -12,9 +12,7 @@ type Props = {
 };
 
 export default function AircraftComponent({ aircraft }: Props) {
-  const armsSorted = Object.entries(aircraft.arms).sort(
-    ([_a1, a], [_b2, b]) => a - b,
-  );
+  const armsSorted = Object.entries(aircraft.arms).sort((a, b) => a[1] - b[1]);
   const [weights, setWeights] = useState<number[]>(
     Array(armsSorted.length).fill(0),
   );

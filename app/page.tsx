@@ -3,7 +3,7 @@
 import Button from "@/components/Button";
 import { addParams, REGISTRATION_REGEX } from "@/lib/utils";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Home() {
   const router = useRouter();
@@ -17,12 +17,16 @@ export default function Home() {
     setInProgress(true);
     const ref = addParams("/aircraft", { registration: reg });
     router.push(ref);
-    setInProgress(false);
   };
+
+  useEffect(() => {
+    return () => setInProgress(false);
+  }, []);
 
   return (
     <div className="mx-auto flex flex-col gap-4 *:transition-all">
       <div className="max-w-md">
+        {/* eslint-disable @next/next/no-img-element */}
         <img
           src="/images/logo.svg"
           alt="Top-down view of a small propeller airplane inside a light blue crosshair"
