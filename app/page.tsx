@@ -21,7 +21,14 @@ export default function Home() {
   };
 
   return (
-    <div className="mx-auto my-auto flex flex-col gap-4 *:transition-all">
+    <div className="mx-auto flex flex-col gap-4 *:transition-all">
+      <div className="max-w-md">
+        <img
+          src="/images/logo.svg"
+          alt="Top-down view of a small propeller airplane inside a light blue crosshair"
+        />
+      </div>
+      <h2 className="text-center text-5xl">Hello, Pilot.</h2>
       <input
         type="text"
         spellCheck="false"
@@ -33,8 +40,8 @@ export default function Home() {
           }
         }}
         value={reg}
-        placeholder="Enter Aircraft Registration"
-        className="w-full rounded-2xl bg-slate-200 px-1 py-3 text-center text-3xl text-slate-700 shadow ring-slate-300 duration-75 outline-none focus:ring-4"
+        placeholder="Enter aircraft registration"
+        className="w-full min-w-md rounded-2xl bg-slate-200 px-1 py-3 text-center text-3xl text-slate-700 shadow ring-slate-300 duration-75 outline-none focus:ring-4"
       />
       <div className="mx-auto flex min-w-80">
         <Button onClick={confirm} disabled={reg.length == 0 || inProgress}>
